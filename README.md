@@ -1,2 +1,2 @@
-# CursoC-
+# CursoC++
 ejercicios de C++
