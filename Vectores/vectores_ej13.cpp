@@ -14,7 +14,6 @@ int *leerVector(int n){
 
 void invertirVector(int *V,int n){
 	
-	
 	for(int i=n-1;i>=0;i--){
 		cout<<V[i]<<" ";
 	}
