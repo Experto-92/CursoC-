@@ -1,0 +1,70 @@
+#include <iostream>
+using namespace std;
+
+typedef struct{
+    string curso;
+    int nombre; //nombre de la seccion tmn puede ser un numero int
+    bool horario[24][7];
+} tdSeccion;
+
+typedef struct{
+    string nombre;
+    int cantSecciones; //Cantidad de horarios disponibles para ese curso
+} tdCurso;
+
+int main(){
+    int nC, nS=0;
+    cout<<"Ingrese el numero de cursos: ";cin>>nC; //numero de cursos
+    tdCurso Curso[nC];
+    for (int i=0;i<nC;i++){
+        cout<<"Ingrese el nombre del curso: ";cin>>Curso[i].nombre;        
+        cout<<"Ingrese la cantidad de secciones disponibles para ese curso: ";cin>>Curso[i].cantSecciones;
+        nS=nS+Curso[i].cantSecciones;
+    }
+    
+	
+	tdSeccion Seccion[nS];/*Cantidad total de secciones*/
+    int s=0, nClases, dia, hInicio, nHoras;
+	for(int i=0;i<nC;i++){
+		for(int j=1;j<=Curso[i].cantSecciones;j++){
+			Seccion[s].curso = Curso[i].nombre;
+			/*cin>>*/Seccion[s].nombre = j;
+			
+			for (int a=0;a<24;a++){
+        		for(int b=0;b<7;b++){
+        			Seccion[s].horario[a][b]=false;
+					//cout<<Seccion[s].horario[a][b]<<" ";				
+        		}
+        		//cout<<endl;
+			}
+			
+			cout<<"------Ingrese el horario para la seccion "<<j<<" del curso "<<Curso[i].nombre<<endl;
+			cout<<"Ingrese el numero de clases: ";cin>>nClases;
+			for(int x=1;x<=nClases;x++){
+				cout<<"Ingrese el dia: ";cin>>dia;
+        		cout<<"Ingrese la hora: ";cin>>hInicio;
+        		cout<<"Ingrese el numero de horas: ";cin>>nHoras;
+        		for (int z=0;z<nHoras;z++){
+        			Seccion[s].horario[hInicio+z][dia] = true;
+        		}
+			}
+			
+			s++;
+		}
+	}
+	
+	
+	for(int i=0;i<nS;i++){
+		cout<<Seccion[i].curso<<" "<<Seccion[i].nombre<<endl;
+		for (int x=0;x<24;x++){
+        	cout<<x<<" ";
+			for(int y=0;y<7;y++){
+        		cout<<Seccion[i].horario[x][y]<<" "; 				
+        	}
+        	cout<<endl;
+		}
+	}
+	
+
+    return 0;
+}
